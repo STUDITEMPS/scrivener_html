@@ -4,6 +4,7 @@ defmodule Scrivener.HTMLTest do
   doctest Scrivener.HTML
 
   import Scrivener.Support.HTML
+  import Phoenix.HTML, only: [safe_to_string: 1]
   alias Scrivener.Page
 
   setup do
@@ -355,7 +356,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "nav",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(build_conn(), %Page{
                  entries: [],
                  page_number: 1,
@@ -363,6 +365,7 @@ defmodule Scrivener.HTMLTest do
                  total_entries: 0,
                  total_pages: 0
                })
+               |> safe_to_string()
     end
 
     test "allows other url parameters" do
@@ -401,7 +404,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "div",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -413,6 +417,7 @@ defmodule Scrivener.HTMLTest do
                  },
                  view_style: :semantic
                )
+               |> safe_to_string()
     end
 
     test "renders Foundation for Sites 6.x styling" do
@@ -471,7 +476,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "ul",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -483,6 +489,7 @@ defmodule Scrivener.HTMLTest do
                  },
                  view_style: :foundation
                )
+               |> safe_to_string()
     end
 
     test "renders Foundation for Sites 6.x styling with ellipsis" do
@@ -650,7 +657,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "ul",
                 62
-              ]} ==
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -663,6 +671,7 @@ defmodule Scrivener.HTMLTest do
                  ellipsis: true,
                  view_style: :foundation
                )
+               |> safe_to_string()
     end
 
     test "renders bootstrap v4 styling" do
@@ -709,7 +718,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "nav",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -721,6 +731,7 @@ defmodule Scrivener.HTMLTest do
                  },
                  view_style: :bootstrap_v4
                )
+               |> safe_to_string()
     end
 
     test "renders materialize css styling" do
@@ -769,7 +780,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "ul",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -781,6 +793,7 @@ defmodule Scrivener.HTMLTest do
                  },
                  view_style: :materialize
                )
+               |> safe_to_string()
     end
 
     test "renders bulma css styling" do
@@ -869,7 +882,8 @@ defmodule Scrivener.HTMLTest do
                 47,
                 "nav",
                 62
-              ]} =
+              ]}
+             |> safe_to_string() ==
                HTML.pagination_links(
                  build_conn(),
                  %Page{
@@ -881,6 +895,7 @@ defmodule Scrivener.HTMLTest do
                  },
                  view_style: :bulma
                )
+               |> safe_to_string()
     end
   end
 end

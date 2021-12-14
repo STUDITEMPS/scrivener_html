@@ -1,6 +1,7 @@
 defmodule Scrivener.HTML.SEOTest do
   use ExUnit.Case
   import Scrivener.HTML.SEO
+  import Phoenix.HTML, only: [safe_to_string: 1]
   alias Scrivener.Page
   doctest Scrivener.HTML.SEO
 
@@ -28,7 +29,7 @@ defmodule Scrivener.HTML.SEOTest do
 
   describe "#header_links" do
     test "on the first page" do
-      assert header_links(%Page{total_pages: 10, page_number: 1}) ==
+      assert header_links(%Page{total_pages: 10, page_number: 1}) |> safe_to_string() ==
                {:safe,
                 [
                   60,
@@ -41,10 +42,11 @@ defmodule Scrivener.HTML.SEOTest do
                   "link",
                   62
                 ]}
+               |> safe_to_string()
     end
 
     test "on the last page" do
-      assert header_links(%Page{total_pages: 10, page_number: 10}) ==
+      assert header_links(%Page{total_pages: 10, page_number: 10}) |> safe_to_string() ==
                {:safe,
                 [
                   60,
@@ -57,10 +59,11 @@ defmodule Scrivener.HTML.SEOTest do
                   "link",
                   62
                 ]}
+               |> safe_to_string()
     end
 
     test "on a middle page" do
-      assert header_links(%Page{total_pages: 10, page_number: 5}) ==
+      assert header_links(%Page{total_pages: 10, page_number: 5}) |> safe_to_string() ==
                {:safe,
                 [
                   [
@@ -87,6 +90,7 @@ defmodule Scrivener.HTML.SEOTest do
                     62
                   ]
                 ]}
+               |> safe_to_string()
     end
   end
 end
