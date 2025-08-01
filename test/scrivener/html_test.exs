@@ -162,7 +162,10 @@ defmodule Scrivener.HTMLTest do
 
     test "does not include ellipsis on first page" do
       assert pages(1..6) ==
-               links_with_opts([total_pages: 8, page_number: 1], first: true, ellipsis: "&hellip;")
+               links_with_opts([total_pages: 8, page_number: 1],
+                 first: true,
+                 ellipsis: "&hellip;"
+               )
     end
 
     test "uses ellipsis only beyond <distance> of first page" do
@@ -318,7 +321,7 @@ defmodule Scrivener.HTMLTest do
 
   describe "Phoenix conn()" do
     test "handles no entries" do
-      use Phoenix.ConnTest
+      import Phoenix.ConnTest
       Application.put_env(:scrivener_html, :view_style, :bootstrap)
       Application.put_env(:scrivener_html, :routes_helper, MyApp.Router.Helpers)
 
@@ -331,15 +334,15 @@ defmodule Scrivener.HTMLTest do
                 [
                   60,
                   "ul",
-                  [[32, "class", 61, 34, "pagination", 34]],
+                  [" class=\"", "pagination", 34],
                   62,
                   [
                     [
                       60,
                       "li",
-                      [[32, "class", 61, 34, "active", 34]],
+                      [" class=\"", "active", 34],
                       62,
-                      [60, "a", [[32, "class", 61, 34, "", 34]], 62, "1", 60, 47, "a", 62],
+                      [60, "a", [" class=\"", [], 34], 62, "1", 60, 47, "a", 62],
                       60,
                       47,
                       "li",
@@ -366,7 +369,7 @@ defmodule Scrivener.HTMLTest do
     end
 
     test "allows other url parameters" do
-      use Phoenix.ConnTest
+      import Phoenix.ConnTest
       Application.put_env(:scrivener_html, :view_style, :bootstrap)
       Application.put_env(:scrivener_html, :routes_helper, MyApp.Router.Helpers)
 
@@ -387,16 +390,16 @@ defmodule Scrivener.HTMLTest do
   end
 
   describe "View Styles" do
-    use Phoenix.ConnTest
+    import Phoenix.ConnTest
 
     test "renders Semantic UI styling" do
       assert {:safe,
               [
                 60,
                 "div",
-                [[32, "class", 61, 34, "ui pagination menu", 34]],
+                [" class=\"", "ui pagination menu", 34],
                 62,
-                [[60, "a", [[32, "class", 61, 34, "active item", 34]], 62, "1", 60, 47, "a", 62]],
+                [[60, "a", [" class=\"", "active item", 34], 62, "1", 60, 47, "a", 62]],
                 60,
                 47,
                 "div",
@@ -420,15 +423,15 @@ defmodule Scrivener.HTMLTest do
               [
                 60,
                 "ul",
-                [[32, "class", 61, 34, "pagination", 34], [32, "role", 61, 34, "pagination", 34]],
+                [" class=\"", "pagination", 34, 32, "role", 61, 34, "pagination", 34],
                 62,
                 [
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "current", 34]],
+                    [" class=\"", "current", 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "1", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "1", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -437,9 +440,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "2", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "2", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -448,14 +451,14 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
                     [
                       60,
                       "span",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
-                      "&gt;&gt;",
+                      [[[] | "&gt;"] | "&gt;"],
                       60,
                       47,
                       "span",
@@ -490,20 +493,20 @@ defmodule Scrivener.HTMLTest do
               [
                 60,
                 "ul",
-                [[32, "class", 61, 34, "pagination", 34], [32, "role", 61, 34, "pagination", 34]],
+                [" class=\"", "pagination", 34, 32, "role", 61, 34, "pagination", 34],
                 62,
                 [
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
                     [
                       60,
                       "span",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
-                      "&lt;&lt;",
+                      [[[] | "&lt;"] | "&lt;"],
                       60,
                       47,
                       "span",
@@ -517,9 +520,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "1", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "1", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -528,9 +531,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "2", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "2", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -539,9 +542,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "current", 34]],
+                    [" class=\"", "current", 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "3", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "3", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -550,9 +553,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "4", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "4", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -561,9 +564,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "5", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "5", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -572,9 +575,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "6", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "6", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -583,9 +586,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "7", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "7", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -594,9 +597,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "8", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "8", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -605,9 +608,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "ellipsis", 34]],
+                    [" class=\"", "ellipsis", 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -616,9 +619,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
-                    [60, "span", [[32, "class", 61, 34, "", 34]], 62, "10", 60, 47, "span", 62],
+                    [60, "span", [" class=\"", [], 34], 62, "10", 60, 47, "span", 62],
                     60,
                     47,
                     "li",
@@ -627,14 +630,14 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "", 34]],
+                    [" class=\"", [], 34],
                     62,
                     [
                       60,
                       "span",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
-                      "&gt;&gt;",
+                      [[[] | "&gt;"] | "&gt;"],
                       60,
                       47,
                       "span",
@@ -670,23 +673,23 @@ defmodule Scrivener.HTMLTest do
               [
                 60,
                 "nav",
-                [[32, "aria-label", 61, 34, "Page navigation", 34]],
+                [32, "aria-label", 61, 34, "Page navigation", 34],
                 62,
                 [
                   60,
                   "ul",
-                  [[32, "class", 61, 34, "pagination", 34]],
+                  [" class=\"", "pagination", 34],
                   62,
                   [
                     [
                       60,
                       "li",
-                      [[32, "class", 61, 34, "active page-item", 34]],
+                      [" class=\"", "active page-item", 34],
                       62,
                       [
                         60,
                         "a",
-                        [[32, "class", 61, 34, "page-link", 34]],
+                        [" class=\"", "page-link", 34],
                         62,
                         "1",
                         60,
@@ -728,15 +731,15 @@ defmodule Scrivener.HTMLTest do
               [
                 60,
                 "ul",
-                [[32, "class", 61, 34, "pagination", 34]],
+                [" class=\"", "pagination", 34],
                 62,
                 [
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "active", 34]],
+                    [" class=\"", "active", 34],
                     62,
-                    [60, "a", [[32, "class", 61, 34, "", 34]], 62, "1", 60, 47, "a", 62],
+                    [60, "a", [" class=\"", [], 34], 62, "1", 60, 47, "a", 62],
                     60,
                     47,
                     "li",
@@ -745,9 +748,9 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "waves-effect", 34]],
+                    [" class=\"", "waves-effect", 34],
                     62,
-                    [60, "a", [[32, "class", 61, 34, "", 34]], 62, "2", 60, 47, "a", 62],
+                    [60, "a", [" class=\"", [], 34], 62, "2", 60, 47, "a", 62],
                     60,
                     47,
                     "li",
@@ -756,9 +759,19 @@ defmodule Scrivener.HTMLTest do
                   [
                     60,
                     "li",
-                    [[32, "class", 61, 34, "waves-effect", 34]],
+                    [" class=\"", "waves-effect", 34],
                     62,
-                    [60, "a", [[32, "class", 61, 34, "", 34]], 62, "&gt;&gt;", 60, 47, "a", 62],
+                    [
+                      60,
+                      "a",
+                      [" class=\"", [], 34],
+                      62,
+                      [[[] | "&gt;"] | "&gt;"],
+                      60,
+                      47,
+                      "a",
+                      62
+                    ],
                     60,
                     47,
                     "li",
@@ -788,23 +801,23 @@ defmodule Scrivener.HTMLTest do
               [
                 60,
                 "nav",
-                [[32, "class", 61, 34, "pagination is-centered", 34]],
+                [" class=\"", "pagination is-centered", 34],
                 62,
                 [
                   60,
                   "ul",
-                  [[32, "class", 61, 34, "pagination-list", 34]],
+                  [" class=\"", "pagination-list", 34],
                   62,
                   [
                     [
                       60,
                       "li",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
                       [
                         60,
                         "a",
-                        [[32, "class", 61, 34, "pagination-link is-current", 34]],
+                        [" class=\"", "pagination-link is-current", 34],
                         62,
                         "1",
                         60,
@@ -820,12 +833,12 @@ defmodule Scrivener.HTMLTest do
                     [
                       60,
                       "li",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
                       [
                         60,
                         "a",
-                        [[32, "class", 61, 34, "pagination-link", 34]],
+                        [" class=\"", "pagination-link", 34],
                         62,
                         "2",
                         60,
@@ -841,14 +854,14 @@ defmodule Scrivener.HTMLTest do
                     [
                       60,
                       "li",
-                      [[32, "class", 61, 34, "", 34]],
+                      [" class=\"", [], 34],
                       62,
                       [
                         60,
                         "a",
-                        [[32, "class", 61, 34, "pagination-link", 34]],
+                        [" class=\"", "pagination-link", 34],
                         62,
-                        "&gt;&gt;",
+                        [[[] | "&gt;"] | "&gt;"],
                         60,
                         47,
                         "a",
