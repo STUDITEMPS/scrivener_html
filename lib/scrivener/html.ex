@@ -1,5 +1,6 @@
 defmodule Scrivener.HTML do
-  use Phoenix.HTML
+  import Phoenix.HTML
+  use PhoenixHTMLHelpers
   @defaults [view_style: :bootstrap, action: :index, page_param: :page, hide_single: false]
   @view_styles [:bootstrap, :semantic, :foundation, :bootstrap_v4, :materialize, :bulma]
   @raw_defaults [
@@ -186,10 +187,8 @@ defmodule Scrivener.HTML do
   end
 
   defp _pagination_links(style, _params, _opts)
-       when not (style in @view_styles) do
-    raise "Scrivener.HTML: View style #{inspect(style)} is not a valid view style. Please use one of #{
-            inspect(@view_styles)
-          }"
+       when style not in @view_styles do
+    raise "Scrivener.HTML: View style #{inspect(style)} is not a valid view style. Please use one of #{inspect(@view_styles)}"
   end
 
   # Bootstrap implementation
