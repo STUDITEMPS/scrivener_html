@@ -1,4 +1,4 @@
-defmodule ScrivenerHtml.Mixfile do
+defmodule ScrivenerHtml.MixProject do
   use Mix.Project
 
   @version "1.8.2"
@@ -29,7 +29,7 @@ defmodule ScrivenerHtml.Mixfile do
   # Type `mix help compile.app` for more information
   def application do
     [
-      applications: [:logger]
+      extra_applications: [:logger]
     ]
   end
 
